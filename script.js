@@ -5,7 +5,7 @@ function uploadImage() {
     if (file) {
         const reader = new FileReader();
         reader.onload = function(event) {
-            const filePath = event.target.result;
+            const filePath = URL.createObjectURL(file);
             const link = document.createElement('a');
             link.href = filePath;
             link.download = file.name;
