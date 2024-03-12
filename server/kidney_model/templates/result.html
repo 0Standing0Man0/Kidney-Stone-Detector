@@ -2,10 +2,15 @@
 <html>
 <head>
     <title>Kidney Stone Detection Result</title>
+    <style>
+        body {
+            background-color: rgba(255, 167, 221, 0.671);
+        }
+    </style>
 </head>
 <body>
     <h1>Kidney Stone Detection Result</h1>
     <p>Uploaded file: {{ filename }}</p>
-    <p>{{ result }}</p>
+    <p style="position: absolute; bottom: calc(204px + 20px); width: 100%; text-align: center; font-weight: bold; font-size: 24px;">{{ result }}</p>
 </body>
 </html>

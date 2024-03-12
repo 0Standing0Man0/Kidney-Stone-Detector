@@ -3,12 +3,61 @@
 <head>
     <title>Image Upload</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body {
+            background-color: #007bff; /* Blue background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            flex-direction: column; /* Align content vertically */
+        }
+
+        h1 {
+            margin-bottom: 20px; /* Add some space below the heading */
+            color: #fff; /* White text */
+        }
+
+        #image-preview {
+            max-width: 300px;
+            margin-top: 20px;
+            display: none; /* Initially hide the image */
+        }
+
+        #image-preview img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        #upload-button {
+            margin-top: 20px; /* Add space between image preview and upload button */
+        }
+    </style>
 </head>
 <body>
-    <h1>Image Upload</h1>
-    <form action="/upload" method="post" enctype="multipart/form-data">
-        <input type="file" name="file" accept="image/*">
-        <input type="submit" value="Upload">
+    <h1>UPLOAD IMAGE</h1>
+    <div id="image-preview">
+        <img id="preview-img" src="" alt="Image Preview">
+    </div>
+
+    <form id="upload-form" action="/upload" method="post" enctype="multipart/form-data">
+        <input id="file-input" type="file" name="file" accept="image/*" onchange="previewImage(event)">
+        <br> <!-- Add line break -->
+        <input id="upload-button" type="submit" value="Upload">
     </form>
+
+    <script>
+        function previewImage(event) {
+            var input = event.target;
+            var reader = new FileReader();
+            reader.onload = function(){
+                var img = document.getElementById('preview-img');
+                img.src = reader.result;
+                document.getElementById('image-preview').style.display = 'block'; // Show the image preview
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    </script>
 </body>
 </html>
